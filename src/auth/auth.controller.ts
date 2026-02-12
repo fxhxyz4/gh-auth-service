@@ -120,9 +120,6 @@ export class AuthController {
     }
 
     // Default redirect
-    console.log(`Default redirect uri: ${process.env.DEFAULT_REDIRECT_URI}`);
-    console.log(`Your secret jwt: ${process.env.JWT_SECRET}`);
-
     return process.env.DEFAULT_REDIRECT_URI || "http://localhost:3001/auth/callback";
   }
 }
