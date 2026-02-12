@@ -35,7 +35,13 @@ export class AuthController {
     @Query("state") state?: string,
     @Query("error") error?: string,
   ) {
+    console.log("🔍 GitHub callback received");
+    console.log("User:", req.user);
+    console.log("State:", state);
+    console.log("Error:", error);
+
     if (error) {
+      console.log("OAuth error:", error);
       return res.redirect(`${this.getRedirectUri(state)}?error=${error}`);
     }
 
@@ -43,12 +49,16 @@ export class AuthController {
       const authResponse = await this.authService.login(req.user);
       const redirectUri = this.getRedirectUri(state);
 
+      console.log("Auth successful, redirecting to:", redirectUri);
+      console.log("Token:", authResponse.accessToken.substring(0, 20) + "...");
+
       return res.redirect(
         `${redirectUri}?token=${authResponse.accessToken}&user=${encodeURIComponent(
           JSON.stringify(authResponse.user),
         )}`,
       );
     } catch (err) {
+      console.error("Auth error:", err);
       return res.redirect(`${this.getRedirectUri(state)}?error=authentication_failed`);
     }
   }
@@ -113,6 +123,6 @@ export class AuthController {
     console.log(`Default redirect uri: ${process.env.DEFAULT_REDIRECT_URI}`);
     console.log(`Your secret jwt: ${process.env.JWT_SECRET}`);
 
-    return process.env.DEFAULT_REDIRECT_URI || "http://localhost:3000/auth/callback";
+    return process.env.DEFAULT_REDIRECT_URI || "http://localhost:3001/auth/callback";
   }
 }

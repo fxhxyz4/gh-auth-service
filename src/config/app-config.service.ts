@@ -36,7 +36,7 @@ export class AppConfigService {
     });
   }
 
-  getGitHubClient(clientId?: string): GitHubClient {
+  getGitHubClient(_clientId?: string): GitHubClient {
     return this.githubClient;
   }
 

@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for gh-auth-service on 2026-02-12T15:57:45+02:00
+# fly.toml app configuration file generated for gh-auth-service on 2026-02-12T18:08:40+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'gh-auth-service'
-primary_region = 'arn'
+primary_region = 'fra'
 
 [build]
 
@@ -17,6 +17,6 @@ primary_region = 'arn'
   processes = ['app']
 
 [[vm]]
-  memory = '2gb'
-  cpus = 4
-  memory_mb = 2048
+  memory = '4gb'
+  cpus = 2
+  memory_mb = 4096

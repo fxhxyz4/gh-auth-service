@@ -1,4 +1,4 @@
-# [GitHub Auth Service 🔐](https://localhost:8000) ◀── click
+# [GitHub Auth Service 🔐](https://gh-auth-service.fly.dev/api/auth/health) ◀── click
 
 Переиспользуемый микросервис для аутентификации через GitHub OAuth 2.0 на NestJS + TypeScript.
 
