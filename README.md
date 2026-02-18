@@ -130,90 +130,6 @@ Authorization: Bearer YOUR_JWT_TOKEN
 GET /api/auth/health
 ```
 
-## 🔌 Интеграция с фронтендом
-
-### React пример
-
-```typescript
-// authService.ts
-const AUTH_SERVICE_URL = 'http://localhost:3000/api';
-const CLIENT_ID = 'your_github_client_id';
-
-export const loginWithGitHub = () => {
-  window.location.href = `${AUTH_SERVICE_URL}/auth/github?client_id=${CLIENT_ID}`;
-};
-
-// Callback page
-export const handleAuthCallback = () => {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get('token');
-  const user = params.get('user');
-
-  if (token) {
-    localStorage.setItem('authToken', token);
-    localStorage.setItem('user', user);
-    // Redirect to dashboard
-    window.location.href = '/dashboard';
-  }
-};
-
-// Protected API calls
-export const fetchProtectedData = async () => {
-  const token = localStorage.getItem('authToken');
-  
-  const response = await fetch('https://your-api.com/data', {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
-  
-  return response.json();
-};
-```
-
-### Vue пример
-
-```typescript
-// auth.service.ts
-import axios from 'axios';
-
-const API_URL = 'http://localhost:3000/api';
-
-export const authService = {
-  login() {
-    window.location.href = `${API_URL}/auth/github`;
-  },
-
-  async validateToken(token: string) {
-    const response = await axios.get(`${API_URL}/auth/validate`, {
-      params: { token }
-    });
-    return response.data;
-  },
-
-  async getCurrentUser(token: string) {
-    const response = await axios.get(`${API_URL}/auth/me`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return response.data;
-  }
-};
-```
-
-## 🔐 Множественные клиенты (проекты)
-
-Для нескольких фронтендов используй разделитель `|`:
-
-```env
-GITHUB_CLIENTS=client1_id:secret1:http://app1.com/callback|client2_id:secret2:http://app2.com/callback
-```
-
-Каждый фронтенд должен передавать свой `client_id`:
-
-```typescript
-window.location.href = `${AUTH_URL}/auth/github?client_id=${YOUR_CLIENT_ID}`;
-```
-
 ## 🚢 Деплой
 
 ### Docker
@@ -228,12 +144,6 @@ docker run -p 3000:3000 --env-file .env github-auth-service
 ```bash
 docker-compose up -d
 ```
-
-### Vercel / Railway / Render / fly.io
-
-1. Добавь environment variables через UI
-2. Деплой из GitHub репозитория
-3. Обнови callback URLs в GitHub OAuth App
 
 ## 📝 Лицензия
 
