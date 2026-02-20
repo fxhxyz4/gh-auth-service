@@ -28,7 +28,7 @@
   "dependencies": {
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
-    "@nestjs/common": "^10.3.0",
+    "@nestjs/common": "^11.1.13",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.3.0",
     "@nestjs/jwt": "^10.2.0",
