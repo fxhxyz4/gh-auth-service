@@ -6,8 +6,8 @@
 
 ```
 ┌─────────────┐      ┌──────────────────┐      ┌─────────┐
-│  Frontend   │─────▶│  Auth Service    │─────▶│ GitHub  │
-│  (React)    │◀─────│  (NestJS)        │◀─────│  OAuth  │
+│  Frontend   │────▶│  Auth Service    │────▶│ GitHub  │
+│  (React)    │◀────│  (NestJS)        │◀────│  OAuth  │
 └─────────────┘      └──────────────────┘      └─────────┘
       │                       │
       │      JWT Token        │
